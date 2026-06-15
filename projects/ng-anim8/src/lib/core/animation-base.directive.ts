@@ -138,8 +138,9 @@ export abstract class AnimationBase implements OnDestroy {
   // ---- Helpers ---------------------------------------------------------------
 
   private getRootEl(): HTMLElement | null {
-    if (!this.view || this.view.rootNodes.length === 0) return null;
-    return this.view.rootNodes[0] as HTMLElement;
+    if (!this.view) return null;
+    const node = this.view.rootNodes.find((n: Node) => n.nodeType === Node.ELEMENT_NODE);
+    return node ? (node as HTMLElement) : null;
   }
 
   private setCssVars(el: HTMLElement): void {
@@ -165,7 +166,7 @@ export abstract class AnimationBase implements OnDestroy {
     };
 
     const handler = () => done();
-    el.addEventListener('transitionend', handler, { once: true });
+    el.addEventListener('transitionend', handler);
 
     // Fallback: duration + delay + 50ms buffer.
     const ms = resolveDuration(this.duration()) + this.delay() + 50;
@@ -178,8 +179,9 @@ export abstract class AnimationBase implements OnDestroy {
   }
 
   private clearTransition(): void {
-    this.transitionCleanup?.();
+    const fn = this.transitionCleanup;
     this.transitionCleanup = null;
+    fn?.();
   }
 
   ngOnDestroy(): void {
