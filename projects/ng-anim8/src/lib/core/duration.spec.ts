@@ -23,7 +23,7 @@ describe('resolveDuration', () => {
 });
 
 describe('DURATION_MAP', () => {
-  it('has entries for fast, normal, and slow', () => {
-    expect(Object.keys(DURATION_MAP)).toEqual(expect.arrayContaining(['fast', 'normal', 'slow']));
+  it('maps fast/normal/slow to 150/300/500', () => {
+    expect(DURATION_MAP).toEqual({ fast: 150, normal: 300, slow: 500 });
   });
 });
