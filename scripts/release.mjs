@@ -54,7 +54,7 @@ run(`git push --follow-tags`, 'Push with tags');
 
 // 5. Publish
 run(
-  `pnpm publish dist/ng-anim8 --tag ${tag} --no-git-checks --access public`,
+  `npm publish dist/ng-anim8 --tag ${tag} --access public`,
   `Publish (tag=${tag})`,
 );
 
