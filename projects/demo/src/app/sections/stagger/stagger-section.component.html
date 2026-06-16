@@ -1,0 +1,21 @@
+<section id="stagger" class="anim-section">
+  <div class="anim-section__header">
+    <h2 class="anim-section__title">Stagger</h2>
+    <p class="anim-section__desc">Staggered enter delay on list children via MutationObserver</p>
+  </div>
+
+  <div class="anim-section__controls">
+    <button class="btn-toggle" (click)="addItem()">Add item</button>
+    <button class="btn-toggle" (click)="reset()" style="opacity: 0.6">Reset</button>
+  </div>
+
+  <div class="anim-section__preview" style="flex-direction: column; align-items: stretch; gap: 0.5rem">
+    <anim8-stagger [gap]="75">
+      @for (item of items(); track item) {
+        <div class="preview-box" style="margin-bottom: 0.5rem">{{ item }}</div>
+      }
+    </anim8-stagger>
+  </div>
+
+  <app-code-snippet [code]="code" />
+</section>
