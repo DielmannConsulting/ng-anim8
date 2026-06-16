@@ -5,6 +5,7 @@ const config: Config = {
   setupFilesAfterEnv: [
     '<rootDir>/projects/ng-anim8/setup-jest.ts',
   ],
+  roots: ['<rootDir>/projects/ng-anim8/src'],
   collectCoverage: false,
   coverageReporters: ['html'],
   coverageDirectory: '<rootDir>/coverage/ng-anim8',
