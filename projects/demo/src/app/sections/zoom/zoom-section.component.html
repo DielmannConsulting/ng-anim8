@@ -1,0 +1,28 @@
+<section id="zoom" class="anim-section">
+  <div class="anim-section__header">
+    <h2 class="anim-section__title">Zoom</h2>
+    <p class="anim-section__desc">Scale 0 → 1 — sharp pop-in effect</p>
+  </div>
+
+  <div class="anim-section__controls">
+    <button class="btn-toggle" (click)="show.set(!show())">
+      {{ show() ? 'Hide' : 'Show' }}
+    </button>
+    <div class="picker">
+      @for (d of durations; track d) {
+        <button
+          class="picker__btn"
+          [class.picker__btn--active]="duration() === d"
+          (click)="duration.set(d)">{{ d }}</button>
+      }
+    </div>
+  </div>
+
+  <div class="anim-section__preview">
+    <anim8-zoom [show]="show()" [duration]="duration()">
+      <div class="preview-box">Zoom content</div>
+    </anim8-zoom>
+  </div>
+
+  <app-code-snippet [code]="code()" />
+</section>
