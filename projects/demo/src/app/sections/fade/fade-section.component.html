@@ -1,0 +1,28 @@
+<section id="fade" class="anim-section">
+  <div class="anim-section__header">
+    <h2 class="anim-section__title">Fade</h2>
+    <p class="anim-section__desc">Opacity 0 → 1 with configurable easing</p>
+  </div>
+
+  <div class="anim-section__controls">
+    <button class="btn-toggle" (click)="show.set(!show())">
+      {{ show() ? 'Hide' : 'Show' }}
+    </button>
+    <div class="picker">
+      @for (d of durations; track d) {
+        <button
+          class="picker__btn"
+          [class.picker__btn--active]="duration() === d"
+          (click)="duration.set(d)">{{ d }}</button>
+      }
+    </div>
+  </div>
+
+  <div class="anim-section__preview">
+    <anim8-fade [show]="show()" [duration]="duration()">
+      <div class="preview-box">Fade content</div>
+    </anim8-fade>
+  </div>
+
+  <app-code-snippet [code]="code()" />
+</section>
