@@ -1,0 +1,70 @@
+<div class="layout">
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <span class="sidebar__dot"></span>
+      <span class="sidebar__name">ng-anim8</span>
+    </div>
+
+    <button class="sidebar__install" (click)="copyInstall()">
+      {{ copied() ? '✓ Copied!' : 'npm install ng-anim8' }}
+    </button>
+
+    <nav class="sidebar__nav">
+      @for (item of navItems; track item.id) {
+        <a
+          class="sidebar__link"
+          [class.sidebar__link--active]="activeSection() === item.id"
+          [href]="'#' + item.id"
+        >{{ item.label }}</a>
+      }
+    </nav>
+
+    <a
+      class="sidebar__github"
+      href="https://github.com/DielmannConsulting/ng-anim8"
+      target="_blank"
+      rel="noopener noreferrer"
+    >GitHub →</a>
+  </aside>
+
+  <!-- ── Scrollable content ── -->
+  <main class="content">
+    <!-- Hero -->
+    <section class="hero">
+      <p class="hero__eyebrow">Angular 20+ · CSS-powered · SSR-safe</p>
+      <h1 class="hero__title">
+        Animations that<br>
+        <span class="hero__gradient">feel alive</span>
+      </h1>
+      <p class="hero__sub">
+        Declarative animation components for Angular. Wrap any content,
+        bind <code class="hero__code">[show]</code>, done.
+      </p>
+      <div class="hero__actions">
+        <button class="hero__install-btn" (click)="copyInstall()">
+          {{ copied() ? '✓ Copied!' : 'npm install ng-anim8' }}
+        </button>
+        <a
+          class="hero__github-btn"
+          href="https://github.com/DielmannConsulting/ng-anim8"
+          target="_blank"
+          rel="noopener noreferrer"
+        >View on GitHub →</a>
+      </div>
+      <div class="hero__badges">
+        <img src="https://img.shields.io/npm/v/ng-anim8.svg" alt="npm version">
+        <img src="https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml/badge.svg" alt="CI">
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
+      </div>
+    </section>
+
+    <!-- Animation sections -->
+    <app-fade-section />
+    <app-slide-section />
+    <app-collapse-section />
+    <app-grow-section />
+    <app-zoom-section />
+    <app-stagger-section />
+  </main>
+</div>
