@@ -213,6 +213,9 @@ Temporary Items
 npm-debug.log
 yarn-error.log
 
+# Claude
+.superpowers/
+docs/superpowers/
+
 # Miscellaneous
 /.angular/cache
-.superpowers/

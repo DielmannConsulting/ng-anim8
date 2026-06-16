@@ -15,8 +15,8 @@ export class GrowSectionComponent {
 
   readonly durations: Duration[] = ['fast', 'normal', 'slow'];
 
-  code = computed(() => `<anim8-grow
-  [show]="visible()"
+  readonly code = computed(() => `<anim8-grow
+  [show]="show()"
   duration="${this.duration()}">
   <div>Your content</div>
 </anim8-grow>`);

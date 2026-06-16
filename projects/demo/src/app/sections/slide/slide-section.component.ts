@@ -21,8 +21,8 @@ export class SlideSectionComponent {
     up: '↑ up', down: '↓ down', left: '← left', right: '→ right',
   };
 
-  code = computed(() => `<anim8-slide
-  [show]="visible()"
+  readonly code = computed(() => `<anim8-slide
+  [show]="show()"
   direction="${this.direction()}"
   duration="${this.duration()}">
   <div>Your content</div>

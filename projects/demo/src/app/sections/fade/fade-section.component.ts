@@ -15,8 +15,8 @@ export class FadeSectionComponent {
 
   readonly durations: Duration[] = ['fast', 'normal', 'slow'];
 
-  code = computed(() => `<anim8-fade
-  [show]="visible()"
+  readonly code = computed(() => `<anim8-fade
+  [show]="show()"
   duration="${this.duration()}">
   <div>Your content</div>
 </anim8-fade>`);

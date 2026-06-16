@@ -63,6 +63,6 @@ export class LayoutComponent implements AfterViewInit, OnDestroy {
     navigator.clipboard?.writeText('npm install ng-anim8').then(() => {
       this.copied.set(true);
       setTimeout(() => this.copied.set(false), 2000);
-    });
+    }).catch(() => {});
   }
 }

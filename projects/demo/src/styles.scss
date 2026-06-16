@@ -97,6 +97,18 @@ body {
   text-align: center;
 }
 
+/* ── Stagger preview layout ──────────────────────────── */
+
+.anim-section__preview--column {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.preview-box--stagger-item {
+  margin-bottom: 0.5rem;
+}
+
 /* ── Toggle button ───────────────────────────────────── */
 
 .btn-toggle {
@@ -116,6 +128,10 @@ body {
 
   &:active {
     transform: scale(0.97);
+  }
+
+  &--muted {
+    opacity: 0.6;
   }
 }
 

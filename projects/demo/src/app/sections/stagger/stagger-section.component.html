@@ -6,13 +6,13 @@
 
   <div class="anim-section__controls">
     <button class="btn-toggle" (click)="addItem()">Add item</button>
-    <button class="btn-toggle" (click)="reset()" style="opacity: 0.6">Reset</button>
+    <button class="btn-toggle btn-toggle--muted" (click)="reset()">Reset</button>
   </div>
 
-  <div class="anim-section__preview" style="flex-direction: column; align-items: stretch; gap: 0.5rem">
+  <div class="anim-section__preview anim-section__preview--column">
     <anim8-stagger [gap]="75">
       @for (item of items(); track item) {
-        <div class="preview-box" style="margin-bottom: 0.5rem">{{ item }}</div>
+        <div class="preview-box preview-box--stagger-item">{{ item }}</div>
       }
     </anim8-stagger>
   </div>
