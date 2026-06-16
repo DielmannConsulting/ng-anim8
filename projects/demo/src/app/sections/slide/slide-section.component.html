@@ -1,0 +1,36 @@
+<section id="slide" class="anim-section">
+  <div class="anim-section__header">
+    <h2 class="anim-section__title">Slide</h2>
+    <p class="anim-section__desc">Translate + opacity in 4 directions</p>
+  </div>
+
+  <div class="anim-section__controls">
+    <button class="btn-toggle" (click)="show.set(!show())">
+      {{ show() ? 'Hide' : 'Show' }}
+    </button>
+    <div class="picker">
+      @for (d of durations; track d) {
+        <button
+          class="picker__btn"
+          [class.picker__btn--active]="duration() === d"
+          (click)="duration.set(d)">{{ d }}</button>
+      }
+    </div>
+    <div class="picker">
+      @for (dir of directions; track dir) {
+        <button
+          class="picker__btn"
+          [class.picker__btn--active]="direction() === dir"
+          (click)="direction.set(dir)">{{ directionLabels[dir] }}</button>
+      }
+    </div>
+  </div>
+
+  <div class="anim-section__preview">
+    <anim8-slide [show]="show()" [duration]="duration()" [direction]="direction()">
+      <div class="preview-box">Slide content</div>
+    </anim8-slide>
+  </div>
+
+  <app-code-snippet [code]="code()" />
+</section>
