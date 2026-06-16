@@ -30,6 +30,7 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "prismjs": "^1.30.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -46,6 +47,7 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@types/jest": "^30.0.0",
+    "@types/prismjs": "^1.26.6",
     "changelogen": "^0.6.2",
     "husky": "^9.1.7",
     "jest": "^30.4.2",
