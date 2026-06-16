@@ -6,7 +6,7 @@
 
 Declarative animation components for Angular 20+. Wrap any content in a component, bind `[show]` — no `@angular/animations` required, SSR-safe.
 
-**[Live Demo](#)** <!-- replace with your GitHub Pages or StackBlitz URL -->
+**[Live Demo](https://dielmannconsulting.github.io/ng-anim8/)**
 
 ---
 
