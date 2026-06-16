@@ -1,59 +1,191 @@
-# NgAnim8
+# ng-anim8
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.13.
+[![npm version](https://img.shields.io/npm/v/ng-anim8.svg)](https://www.npmjs.com/package/ng-anim8)
+[![CI](https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml/badge.svg)](https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## Development server
+Declarative animation components for Angular 20+. Wrap any content in a component, bind `[show]` — no `@angular/animations` required, SSR-safe.
 
-To start a local development server, run:
+**[Live Demo](#)** <!-- replace with your GitHub Pages or StackBlitz URL -->
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Installation
 
 ```bash
-ng generate component component-name
+npm install ng-anim8
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Peer dependencies: `@angular/core ^20.3.0` and `@angular/common ^20.3.0`.
 
-```bash
-ng generate --help
+---
+
+## Quick Start
+
+```typescript
+import { Component, signal } from '@angular/core';
+import { FadeComponent } from 'ng-anim8';
+
+@Component({
+  imports: [FadeComponent],
+  template: `
+    <button (click)="visible.set(!visible())">Toggle</button>
+
+    <anim8-fade [show]="visible()">
+      <p>Hello, world!</p>
+    </anim8-fade>
+  `,
+})
+export class AppComponent {
+  visible = signal(false);
+}
 ```
 
-## Building
+NgModule users can import `NgAnim8Module` once to get all six components.
 
-To build the project run:
+```typescript
+import { NgAnim8Module } from 'ng-anim8';
 
-```bash
-ng build
+@NgModule({ imports: [NgAnim8Module] })
+export class AppModule {}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Components
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+| Component | Selector | Effect |
+|---|---|---|
+| `FadeComponent` | `<anim8-fade>` | Opacity 0 → 1 |
+| `SlideComponent` | `<anim8-slide>` | Translate + opacity (4 directions) |
+| `CollapseComponent` | `<anim8-collapse>` | Height 0 → auto |
+| `GrowComponent` | `<anim8-grow>` | Scale 0.75 → 1 + opacity |
+| `ZoomComponent` | `<anim8-zoom>` | Scale 0 → 1 |
+| `StaggerComponent` | `<anim8-stagger>` | Staggered enter delay on list children |
 
-```bash
-ng test
+### Fade
+
+```html
+<anim8-fade [show]="isOpen()">
+  <p>Fades in and out smoothly</p>
+</anim8-fade>
 ```
 
-## Running end-to-end tests
+### Slide
 
-For end-to-end (e2e) testing, run:
+Translates from a 20px offset in the given direction while fading. Default direction is `up`.
 
-```bash
-ng e2e
+```html
+<anim8-slide [show]="isOpen()" direction="down">
+  <p>Slides in from above, leaves downward</p>
+</anim8-slide>
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+`direction`: `up` | `down` | `left` | `right`
 
-## Additional Resources
+### Collapse
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Animates from height 0 to the content's natural height using the CSS grid trick — no JavaScript height measurement.
+
+```html
+<anim8-collapse [show]="isExpanded()">
+  <p>Expands and collapses vertically</p>
+</anim8-collapse>
+```
+
+### Grow
+
+```html
+<anim8-grow [show]="isVisible()">
+  <p>Scales up from 75% while fading in</p>
+</anim8-grow>
+```
+
+### Zoom
+
+```html
+<anim8-zoom [show]="isOpen()">
+  <p>Scales from 0 to full size</p>
+</anim8-zoom>
+```
+
+### Stagger
+
+Applies an incrementally increasing `animation-delay` to each direct child, then adds a CSS class to trigger their animation. Children define their own `@keyframes` — the built-in `anim8-stagger-enter` class provides a ready-made fade-up.
+
+```html
+<anim8-stagger [gap]="75" enterClass="anim8-stagger-enter">
+  @for (item of items; track item.id) {
+    <div>{{ item.name }}</div>
+  }
+</anim8-stagger>
+```
+
+| Input | Type | Default | Description |
+|---|---|---|---|
+| `gap` | `number` | `50` | Delay increment between children (ms) |
+| `enterClass` | `string` | `'anim8-stagger-enter'` | CSS class added to each child to trigger its animation |
+
+---
+
+## Shared Inputs
+
+All components except `<anim8-stagger>` accept:
+
+| Input | Type | Default | Description |
+|---|---|---|---|
+| `show` | `boolean` | `false` | Controls visibility |
+| `duration` | `'fast' \| 'normal' \| 'slow' \| number` | `'normal'` | Animation duration (`fast` = 150ms, `normal` = 300ms, `slow` = 500ms, or any ms value) |
+| `easing` | `string` | `'ease-in-out'` | Any CSS easing function or `cubic-bezier(...)` |
+| `delay` | `number` | `0` | Delay before the animation starts (ms) |
+| `keepMounted` | boolean attribute | `false` | Keep content in the DOM when hidden — useful for tabs or components with preserved state |
+
+```html
+<anim8-slide
+  [show]="isOpen()"
+  direction="right"
+  duration="fast"
+  easing="cubic-bezier(0.4, 0, 0.2, 1)"
+  [delay]="150"
+  keepMounted
+>
+  <nav>Sidebar</nav>
+</anim8-slide>
+```
+
+---
+
+## Outputs
+
+All components except `<anim8-stagger>` emit lifecycle events:
+
+| Output | When |
+|---|---|
+| `enterStart` | Animation begins entering |
+| `enterDone` | Animation finishes entering |
+| `leaveStart` | Animation begins leaving |
+| `leaveDone` | Content removed from DOM (or hidden if `keepMounted`) |
+
+```html
+<anim8-fade
+  [show]="isVisible()"
+  (enterDone)="focusContent()"
+  (leaveDone)="cleanup()"
+>
+  <div>Content</div>
+</anim8-fade>
+```
+
+---
+
+## Requirements
+
+- Angular 20+
+- No dependency on `@angular/animations`
+- SSR-safe
+
+---
+
+## License
+
+MIT © [Dielmann Consulting](https://github.com/DielmannConsulting)
