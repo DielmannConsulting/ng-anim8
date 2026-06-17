@@ -3,5 +3,5 @@
   "dest": "../../dist/ng-anim8",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
 }

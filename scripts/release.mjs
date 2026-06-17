@@ -43,6 +43,7 @@ run(`npx changelogen -r ${version} --output CHANGELOG.md --no-commit --no-tag --
 
 // 3. Build the library
 run(`pnpm ng build ng-anim8`, 'Build library');
+run(`cp README.md dist/ng-anim8/README.md`, 'Copy README to dist');
 
 // 4. Commit, tag
 run(
