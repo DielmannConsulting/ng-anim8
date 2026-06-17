@@ -11,7 +11,7 @@ import { readFileSync, writeFileSync } from 'fs';
 const args = process.argv.slice(2);
 const version = args.find((a) => !a.startsWith('--'));
 const tag = args.find((a) => a.startsWith('--tag='))?.split('=')[1] ?? 'latest';
-const dryRun = args.includes('--dry-run');
+const dryRun = args.includes('--dry-run') || process.env.DRY_RUN === 'true';
 
 if (!version) {
   console.error('Usage: node scripts/release.mjs <version> [--tag latest|next|beta] [--dry-run]');
@@ -39,7 +39,7 @@ for (const p of paths) {
 }
 
 // 2. Generate / update CHANGELOG.md
-run(`npx changelogen --output CHANGELOG.md`, 'Generate CHANGELOG');
+run(`npx changelogen --output CHANGELOG.md --no-commit --no-tag --no-push --no-bump`, 'Generate CHANGELOG');
 
 // 3. Build the library
 run(`pnpm ng build ng-anim8`, 'Build library');

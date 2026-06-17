@@ -58,6 +58,7 @@ jobs:
         run: pnpm ng test ng-anim8 --watch=false
 
       - name: Release
-        run: node scripts/release.mjs ${{ inputs.version }} --tag=${{ inputs.tag }} ${{ inputs.dry_run == 'true' && '--dry-run' || '' }}
+        run: node scripts/release.mjs ${{ inputs.version }} --tag=${{ inputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run }}
