@@ -59,6 +59,26 @@ describe('FadeComponent (+ AnimationBase shared behaviour)', () => {
     expect(host.style.getPropertyValue('--anim8-delay')).toBe('100ms');
   });
 
+  it('resolves a named easing key to its CSS value on --anim8-easing', async () => {
+    await render(
+      `<anim8-fade easing="spring"><span>hi</span></anim8-fade>`,
+      { imports: [FadeComponent] },
+    );
+    const host = document.querySelector('anim8-fade') as HTMLElement;
+    expect(host.style.getPropertyValue('--anim8-easing'))
+      .toBe('cubic-bezier(0.175, 0.885, 0.32, 1.275)');
+  });
+
+  it('passes a raw CSS easing string through unchanged on --anim8-easing', async () => {
+    await render(
+      `<anim8-fade easing="cubic-bezier(0.1, 0.2, 0.3, 0.4)"><span>hi</span></anim8-fade>`,
+      { imports: [FadeComponent] },
+    );
+    const host = document.querySelector('anim8-fade') as HTMLElement;
+    expect(host.style.getPropertyValue('--anim8-easing'))
+      .toBe('cubic-bezier(0.1, 0.2, 0.3, 0.4)');
+  });
+
   // --- SSR ---
 
   it('renders content on the server', async () => {
