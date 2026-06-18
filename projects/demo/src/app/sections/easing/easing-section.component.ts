@@ -19,8 +19,10 @@ export class EasingSectionComponent {
     setTimeout(() => {
       this.playing.set(true);
       setTimeout(() => {
-        this.playing.set(false);
-        this.canTransition.set(false);
+        this.playing.set(false);           // start return transition (canTransition still true)
+        setTimeout(() => {
+          this.canTransition.set(false);   // remove transition only after dot has returned
+        }, 850);                           // 50ms buffer past the 800ms transition duration
       }, 1600);
     }, 0);
   }
