@@ -9,7 +9,7 @@
     "noImplicitReturns": true,
     "paths": {
       "ng-anim8": [
-        "./dist/ng-anim8"
+        "./projects/ng-anim8/src/public-api"
       ]
     },
     "noFallthroughCasesInSwitch": true,

@@ -1,12 +1,12 @@
 # ng-anim8
 
 [![npm version](https://img.shields.io/npm/v/ng-anim8.svg)](https://www.npmjs.com/package/ng-anim8)
-[![CI](https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml/badge.svg)](https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml)
+[![CI](https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml/badge.svg)](https://github.com/sdielmann/ng-anim8/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Declarative animation components for Angular 20+. Wrap any content in a component, bind `[show]` — no `@angular/animations` required, SSR-safe.
 
-**[Live Demo](https://dielmannconsulting.github.io/ng-anim8/)**
+**[Live Demo](https://sdielmann.github.io/ng-anim8/)**
 
 ---
 
@@ -138,7 +138,6 @@ All components except `<anim8-stagger>` accept:
 | `duration` | `'fast' \| 'normal' \| 'slow' \| number` | `'normal'` | Animation duration (`fast` = 150ms, `normal` = 300ms, `slow` = 500ms, or any ms value) |
 | `easing` | `string` | `'ease-in-out'` | Any CSS easing function or `cubic-bezier(...)` |
 | `delay` | `number` | `0` | Delay before the animation starts (ms) |
-| `keepMounted` | boolean attribute | `false` | Keep content in the DOM when hidden — useful for tabs or components with preserved state |
 
 ```html
 <anim8-slide
@@ -147,33 +146,9 @@ All components except `<anim8-stagger>` accept:
   duration="fast"
   easing="cubic-bezier(0.4, 0, 0.2, 1)"
   [delay]="150"
-  keepMounted
 >
   <nav>Sidebar</nav>
 </anim8-slide>
-```
-
----
-
-## Outputs
-
-All components except `<anim8-stagger>` emit lifecycle events:
-
-| Output | When |
-|---|---|
-| `enterStart` | Animation begins entering |
-| `enterDone` | Animation finishes entering |
-| `leaveStart` | Animation begins leaving |
-| `leaveDone` | Content removed from DOM (or hidden if `keepMounted`) |
-
-```html
-<anim8-fade
-  [show]="isVisible()"
-  (enterDone)="focusContent()"
-  (leaveDone)="cleanup()"
->
-  <div>Content</div>
-</anim8-fade>
 ```
 
 ---

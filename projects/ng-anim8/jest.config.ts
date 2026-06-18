@@ -1,5 +1,7 @@
 import type { Config } from 'jest';
 
+const isCI = process.env['CI'] === 'true';
+
 const config: Config = {
   displayName: 'ng-anim8',
   setupFilesAfterEnv: [
@@ -7,7 +9,7 @@ const config: Config = {
   ],
   roots: ['<rootDir>/projects/ng-anim8/src'],
   collectCoverage: false,
-  coverageReporters: ['html'],
+  coverageReporters: ['cobertura'],
   coverageDirectory: '<rootDir>/coverage/ng-anim8',
 };
 

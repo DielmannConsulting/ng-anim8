@@ -26,11 +26,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Test
-        run: pnpm ng test ng-anim8 --watch=false
-
       - name: Build library
         run: pnpm ng build ng-anim8
+
+      - name: Test
+        run: pnpm ng test ng-anim8 --watch=false --silent --coverage
+
+      - name: Create coverage badge
+        uses: gaelgirodon/ci-badges-action@v1
+        with:
+          gist-id: 2a4ee24be03aecd858b7bdf8fee71cb1
+          token: ${{ secrets.GIST_SECRET }}
 
   deploy:
     name: Deploy to GitHub Pages
