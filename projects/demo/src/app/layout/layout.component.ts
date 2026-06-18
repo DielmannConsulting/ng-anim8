@@ -1,11 +1,11 @@
-import { Component, AfterViewInit, OnDestroy, signal } from '@angular/core';
-import { FadeSectionComponent }     from '../sections/fade/fade-section.component';
-import { SlideSectionComponent }    from '../sections/slide/slide-section.component';
+import { AfterViewInit, Component, OnDestroy, signal } from '@angular/core';
+import { FadeSectionComponent } from '../sections/fade/fade-section.component';
+import { SlideSectionComponent } from '../sections/slide/slide-section.component';
 import { CollapseSectionComponent } from '../sections/collapse/collapse-section.component';
-import { GrowSectionComponent }     from '../sections/grow/grow-section.component';
-import { ZoomSectionComponent }     from '../sections/zoom/zoom-section.component';
-import { StaggerSectionComponent }  from '../sections/stagger/stagger-section.component';
-import { EasingSectionComponent }   from '../sections/easing/easing-section.component';
+import { GrowSectionComponent } from '../sections/grow/grow-section.component';
+import { ZoomSectionComponent } from '../sections/zoom/zoom-section.component';
+import { AnimationInListsSectionComponent } from '../sections/animation-in-lists/animation-in-lists-section.component';
+import { EasingSectionComponent } from '../sections/easing/easing-section.component';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +16,7 @@ import { EasingSectionComponent }   from '../sections/easing/easing-section.comp
     CollapseSectionComponent,
     GrowSectionComponent,
     ZoomSectionComponent,
-    StaggerSectionComponent,
+    AnimationInListsSectionComponent,
     EasingSectionComponent,
   ],
   templateUrl: './layout.component.html',

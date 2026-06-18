@@ -1,0 +1,22 @@
+<section id="stagger" class="anim-section">
+  <div class="anim-section__header">
+    <h2 class="anim-section__title">Lists and Repeaters</h2>
+    <p class="anim-section__desc">The animations can also be used within lists. Please note that, depending on your HTML
+      layout and markup, this might not work (e.g. within tables). Consider using a custom animation in those cases.</p>
+  </div>
+
+  <div class="anim-section__controls">
+    <button class="btn-toggle" (click)="addItem()">Add item</button>
+    <button class="btn-toggle btn-toggle--muted" (click)="reset()">Reset</button>
+  </div>
+
+  <div class="anim-section__preview anim-section__preview--column">
+    @for (item of items(); track item) {
+      <anim8-collapse easing="ease-out" duration="150">
+        <div class="preview-box preview-box--stagger-item">{{ item }}</div>
+      </anim8-collapse>
+    }
+  </div>
+
+  <app-code-snippet [code]="code"/>
+</section>

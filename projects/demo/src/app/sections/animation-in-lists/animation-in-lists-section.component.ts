@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { StaggerComponent } from 'ng-anim8';
+import { CollapseComponent } from 'ng-anim8';
 import { CodeSnippetComponent } from '../../shared/code-snippet/code-snippet.component';
 
 @Component({
-  selector: 'app-stagger-section',
+  selector: 'app-animation-in-lists-section',
   standalone: true,
-  imports: [StaggerComponent, CodeSnippetComponent],
-  templateUrl: './stagger-section.component.html',
+  imports: [CodeSnippetComponent, CollapseComponent],
+  templateUrl: './animation-in-lists-section.component.html',
 })
-export class StaggerSectionComponent {
+export class AnimationInListsSectionComponent {
   items = signal<string[]>([]);
 
   private nextId = 1;
@@ -22,9 +22,11 @@ export class StaggerSectionComponent {
     this.nextId = 1;
   }
 
-  readonly code = `<anim8-stagger [gap]="75">
+  readonly code = `
   @for (item of items(); track item) {
-    <div>{{ item }}</div>
+    <anim8-collapse easing="ease-out" duration="150">
+        <div>{{ item }}</div>
+    </anim8-collapse>
   }
-</anim8-stagger>`;
+`;
 }

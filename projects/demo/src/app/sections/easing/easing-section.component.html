@@ -5,8 +5,8 @@
   </div>
 
   <div class="anim-section__controls">
-    <button class="btn-toggle" (click)="play()" [disabled]="playing()">
-      {{ playing() ? 'Playing…' : 'Play All' }}
+    <button class="btn-toggle" (click)="toggle()">
+      Run animation
     </button>
   </div>
 
@@ -19,9 +19,8 @@
         </div>
         <div class="easing-row__track">
           <div
-            class="easing-dot"
-            [class.easing-dot--transition]="canTransition()"
-            [class.easing-dot--playing]="playing()"
+            class="easing-dot easing-dot--transition"
+            [class.easing-dot--playing]="animate()"
           ></div>
         </div>
       </div>

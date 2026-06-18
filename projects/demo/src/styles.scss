@@ -32,6 +32,12 @@ body {
   background-attachment: fixed;
 }
 
+hr {
+  border: none;
+  border-top: 1px solid var(--glass-border);
+  margin: 2rem 0;
+}
+
 /* ── Section layout ──────────────────────────────────── */
 
 .anim-section {

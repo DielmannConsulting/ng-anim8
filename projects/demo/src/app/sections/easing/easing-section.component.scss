@@ -40,19 +40,16 @@
 .easing-row__track {
   flex: 1;
   position: relative;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid var(--glass-border);
+  height: 1px;
+  background: var(--glass-border);
 }
 
 .easing-dot {
   position: absolute;
   width: 24px;
   height: 24px;
-  top: 2px;
-  left: 2px;
+  top: -12px;
+  left: 12px;
   border-radius: 50%;
   background: linear-gradient(135deg, #38bdf8, #c084fc);
 
@@ -62,6 +59,6 @@
 
   &--playing {
     // 100% = track width; subtract dot-width(24px) + right-padding(2px)
-    left: calc(100% - 26px);
+    left: calc(100% - 36px);
   }
 }
