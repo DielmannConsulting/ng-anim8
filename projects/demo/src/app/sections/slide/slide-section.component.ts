@@ -21,10 +21,11 @@ export class SlideSectionComponent {
     up: '↑ up', down: '↓ down', left: '← left', right: '→ right',
   };
 
-  readonly code = computed(() => `<anim8-slide
-  [show]="show()"
-  direction="${this.direction()}"
-  duration="${this.duration()}">
-  <div>Your content</div>
-</anim8-slide>`);
+  readonly code = computed(() => `@if (show()) {
+  <anim8-slide
+    direction="${this.direction()}"
+    duration="${this.duration()}">
+    <div>Your content</div>
+  </anim8-slide>
+}`);
 }

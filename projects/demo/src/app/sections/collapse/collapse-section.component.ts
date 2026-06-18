@@ -15,9 +15,9 @@ export class CollapseSectionComponent {
 
   readonly durations: Duration[] = ['fast', 'normal', 'slow'];
 
-  readonly code = computed(() => `<anim8-collapse
-  [show]="show()"
-  duration="${this.duration()}">
-  <div>Your content</div>
-</anim8-collapse>`);
+  readonly code = computed(() => `@if (show()) {
+  <anim8-collapse duration="${this.duration()}">
+    <div>Your content</div>
+  </anim8-collapse>
+}`);
 }

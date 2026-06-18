@@ -5,7 +5,7 @@
 ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsdielmann%2F2a4ee24be03aecd858b7bdf8fee71cb1%2Fraw%2Fng-anim8-cobertura-coverage.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Declarative animation components for Angular 20+. Wrap any content in a component, bind `[show]` — no `@angular/animations` required, SSR-safe.
+Declarative animation components for Angular 20+. Wrap any content in a component, control visibility with `@if` — no `@angular/animations` required, SSR-safe.
 
 **[Live Demo](https://sdielmann.github.io/ng-anim8/)**
 
@@ -32,9 +32,11 @@ import { FadeComponent } from 'ng-anim8';
   template: `
     <button (click)="visible.set(!visible())">Toggle</button>
 
-    <anim8-fade [show]="visible()">
-      <p>Hello, world!</p>
-    </anim8-fade>
+    @if (visible()) {
+      <anim8-fade>
+        <p>Hello, world!</p>
+      </anim8-fade>
+    }
   `,
 })
 export class AppComponent {
@@ -67,9 +69,11 @@ export class AppModule {}
 ### Fade
 
 ```html
-<anim8-fade [show]="isOpen()">
-  <p>Fades in and out smoothly</p>
-</anim8-fade>
+@if (isOpen()) {
+  <anim8-fade>
+    <p>Fades in and out smoothly</p>
+  </anim8-fade>
+}
 ```
 
 ### Slide
@@ -77,9 +81,11 @@ export class AppModule {}
 Translates from a 20px offset in the given direction while fading. Default direction is `up`.
 
 ```html
-<anim8-slide [show]="isOpen()" direction="down">
-  <p>Slides in from above, leaves downward</p>
-</anim8-slide>
+@if (isOpen()) {
+  <anim8-slide direction="down">
+    <p>Slides in from above, leaves downward</p>
+  </anim8-slide>
+}
 ```
 
 `direction`: `up` | `down` | `left` | `right`
@@ -89,25 +95,31 @@ Translates from a 20px offset in the given direction while fading. Default direc
 Animates from height 0 to the content's natural height using the CSS grid trick — no JavaScript height measurement.
 
 ```html
-<anim8-collapse [show]="isExpanded()">
-  <p>Expands and collapses vertically</p>
-</anim8-collapse>
+@if (isExpanded()) {
+  <anim8-collapse>
+    <p>Expands and collapses vertically</p>
+  </anim8-collapse>
+}
 ```
 
 ### Grow
 
 ```html
-<anim8-grow [show]="isVisible()">
-  <p>Scales up from 75% while fading in</p>
-</anim8-grow>
+@if (isVisible()) {
+  <anim8-grow>
+    <p>Scales up from 75% while fading in</p>
+  </anim8-grow>
+}
 ```
 
 ### Zoom
 
 ```html
-<anim8-zoom [show]="isOpen()">
-  <p>Scales from 0 to full size</p>
-</anim8-zoom>
+@if (isOpen()) {
+  <anim8-zoom>
+    <p>Scales from 0 to full size</p>
+  </anim8-zoom>
+}
 ```
 
 ### Stagger
@@ -135,21 +147,21 @@ All components except `<anim8-stagger>` accept:
 
 | Input | Type | Default | Description |
 |---|---|---|---|
-| `show` | `boolean` | `false` | Controls visibility |
 | `duration` | `'fast' \| 'normal' \| 'slow' \| number` | `'normal'` | Animation duration (`fast` = 150ms, `normal` = 300ms, `slow` = 500ms, or any ms value) |
 | `easing` | `string` | `'ease-in-out'` | Any CSS easing function or `cubic-bezier(...)` |
 | `delay` | `number` | `0` | Delay before the animation starts (ms) |
 
 ```html
-<anim8-slide
-  [show]="isOpen()"
-  direction="right"
-  duration="fast"
-  easing="cubic-bezier(0.4, 0, 0.2, 1)"
-  [delay]="150"
->
-  <nav>Sidebar</nav>
-</anim8-slide>
+@if (isOpen()) {
+  <anim8-slide
+    direction="right"
+    duration="fast"
+    easing="cubic-bezier(0.4, 0, 0.2, 1)"
+    [delay]="150"
+  >
+    <nav>Sidebar</nav>
+  </anim8-slide>
+}
 ```
 
 ---

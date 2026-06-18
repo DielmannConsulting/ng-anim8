@@ -15,9 +15,9 @@ export class ZoomSectionComponent {
 
   readonly durations: Duration[] = ['fast', 'normal', 'slow'];
 
-  readonly code = computed(() => `<anim8-zoom
-  [show]="show()"
-  duration="${this.duration()}">
-  <div>Your content</div>
-</anim8-zoom>`);
+  readonly code = computed(() => `@if (show()) {
+  <anim8-zoom duration="${this.duration()}">
+    <div>Your content</div>
+  </anim8-zoom>
+}`);
 }
