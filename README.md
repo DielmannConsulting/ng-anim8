@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/ng-anim8.svg)](https://www.npmjs.com/package/ng-anim8)
 [![CI](https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml/badge.svg)](https://github.com/sdielmann/ng-anim8/actions/workflows/ci.yml)
+![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsdielmann%2F2a4ee24be03aecd858b7bdf8fee71cb1%2Fraw%2Fng-anim8-cobertura-coverage.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Declarative animation components for Angular 20+. Wrap any content in a component, bind `[show]` — no `@angular/animations` required, SSR-safe.
