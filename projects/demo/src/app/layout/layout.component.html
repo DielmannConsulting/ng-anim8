@@ -32,14 +32,13 @@
   <main class="content">
     <!-- Hero -->
     <section class="hero">
-      <p class="hero__eyebrow">Angular 20+ · CSS-powered · SSR-safe</p>
+      <p class="hero__eyebrow">Angular 20+ · CSS-powered · SSR-safe · Zoneless</p>
       <h1 class="hero__title">
-        Animations that<br>
-        <span class="hero__gradient">feel alive</span>
+        Make animations <span class="hero__gradient">simple</span> again
       </h1>
       <p class="hero__sub">
-        Declarative animation components for Angular. Wrap any content,
-        bind <code class="hero__code">[show]</code>, done.
+        Declarative animation components for Angular, built for simplicity and developer convenience. Wrap any content
+        in <code>{{ '@if' }}</code> or <code>{{ '@for' }}</code>, use these components, done.
       </p>
       <div class="hero__actions">
         <button class="hero__install-btn" (click)="copyInstall()">
@@ -54,21 +53,24 @@
       </div>
       <div class="hero__badges">
         <img src="https://img.shields.io/npm/v/ng-anim8.svg" alt="npm version">
+        <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/ng-anim8?cacheSeconds=86400&link=https%3A%2F%2Fbundlephobia.com%2Fpackage%2Fng-anim8">
         <img src="https://github.com/DielmannConsulting/ng-anim8/actions/workflows/ci.yml/badge.svg" alt="CI">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsdielmann%2F2a4ee24be03aecd858b7bdf8fee71cb1%2Fraw%2Fng-anim8-cobertura-coverage.json" alt="Code Coverage">
+        <img
+          src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsdielmann%2F2a4ee24be03aecd858b7bdf8fee71cb1%2Fraw%2Fng-anim8-cobertura-coverage.json"
+          alt="Code Coverage">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
       </div>
     </section>
 
     <!-- Animation sections -->
-    <app-fade-section />
-    <app-slide-section />
-    <app-collapse-section />
-    <app-grow-section />
-    <app-zoom-section />
-    <hr />
-    <app-animation-in-lists-section />
-    <hr />
-    <app-easing-section />
+    <app-fade-section/>
+    <app-slide-section/>
+    <app-collapse-section/>
+    <app-grow-section/>
+    <app-zoom-section/>
+    <hr/>
+    <app-animation-in-lists-section/>
+    <hr/>
+    <app-easing-section/>
   </main>
 </div>
