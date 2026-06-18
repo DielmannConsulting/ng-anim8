@@ -71,7 +71,6 @@ export class AppModule {
 | `CollapseComponent` | `<anim8-collapse>` | Height 0 → auto                        |
 | `GrowComponent`     | `<anim8-grow>`     | Scale (configurable) → 1 + opacity     |
 | `ZoomComponent`     | `<anim8-zoom>`     | Scale 0 → 1                            |
-| `StaggerComponent`  | `<anim8-stagger>`  | Staggered enter delay on list children |
 
 ### Fade
 
@@ -132,24 +131,6 @@ Animates from height 0 to the content's natural height using the CSS grid trick 
 </anim8-zoom>
 }
 ```
-
-### Stagger
-
-Applies an incrementally increasing `animation-delay` to each direct child, then adds a CSS class to trigger their animation. Children define their own `@keyframes` — the built-in `anim8-stagger-enter` class provides a ready-made fade-up.
-
-```html
-
-<anim8-stagger [gap]="75" enterClass="anim8-stagger-enter">
-  @for (item of items; track item.id) {
-  <div>{{ item.name }}</div>
-  }
-</anim8-stagger>
-```
-
-| Input        | Type     | Default                 | Description                                            |
-|--------------|----------|-------------------------|--------------------------------------------------------|
-| `gap`        | `number` | `50`                    | Delay increment between children (ms)                  |
-| `enterClass` | `string` | `'anim8-stagger-enter'` | CSS class added to each child to trigger its animation |
 
 ---
 
