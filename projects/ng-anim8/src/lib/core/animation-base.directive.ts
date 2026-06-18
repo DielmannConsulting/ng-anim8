@@ -1,6 +1,6 @@
 import { computed, Directive, input } from '@angular/core';
-import { DEFAULT_EASING, resolveEasing } from './easing';
-import { Duration, resolveDuration } from './duration';
+import { DEFAULT_EASING, EasingName, resolveEasing } from './easing';
+import { DURATION_MAP, resolveDuration } from './duration';
 
 @Directive({
   host: {
@@ -11,8 +11,8 @@ import { Duration, resolveDuration } from './duration';
 })
 export abstract class AnimationBase {
 
-  duration = input<Duration>('normal');
-  easing   = input(DEFAULT_EASING, { transform: resolveEasing });
+  duration = input(DURATION_MAP['normal'], { transform: resolveDuration });
+  easing   = input<EasingName | string, string>(DEFAULT_EASING, { transform: resolveEasing });
   delay    = input<number>(0);
 
   protected readonly resolvedDuration = computed(() => `${resolveDuration(this.duration())}ms`);

@@ -1,3 +1,5 @@
+import { numberAttribute } from '@angular/core';
+
 export type Duration = 'fast' | 'normal' | 'slow' | number;
 
 type StringDuration = Exclude<Duration, number>;
@@ -8,6 +10,10 @@ export const DURATION_MAP: Record<StringDuration, number> = {
   slow:   500,
 };
 
-export function resolveDuration(d: Duration): number {
-  return typeof d === 'number' ? d : DURATION_MAP[d as StringDuration];
+export function resolveDuration(d: unknown): number {
+  if (String(d) in DURATION_MAP) {
+    return DURATION_MAP[d as StringDuration];
+  }
+
+  return numberAttribute(d, DURATION_MAP['normal']);
 }

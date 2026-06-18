@@ -20,6 +20,9 @@ export const EASINGS: Record<EasingName, string> = {
 
 export const DEFAULT_EASING: EasingName = 'ease-in-out';
 
-export function resolveEasing(value: string): string {
-  return (EASINGS as Record<string, string>)[value] ?? value;
+export function resolveEasing(value: EasingName | string): string {
+  if (value in EASINGS) {
+    return EASINGS[value as EasingName];
+  }
+  return value;
 }
