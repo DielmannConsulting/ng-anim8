@@ -7,23 +7,23 @@ describe('FadeComponent (+ AnimationBase shared behaviour)', () => {
 
   // --- DOM mount/unmount ---
 
-  it('does not render content when show is false', async () => {
-    await render(`<anim8-fade [show]="false"><span>hello</span></anim8-fade>`, {
+  it('does not render content when excluded by @if', async () => {
+    await render(`@if (false) { <anim8-fade><span>hello</span></anim8-fade> }`, {
       imports: [FadeComponent],
     });
     expect(document.querySelector('.anim8-fade')).not.toBeInTheDocument();
   });
 
-  it('mounts the animation element when show is true', async () => {
-    await render(`<anim8-fade [show]="true"><span>hello</span></anim8-fade>`, {
+  it('mounts the animation element when in template', async () => {
+    await render(`<anim8-fade><span>hello</span></anim8-fade>`, {
       imports: [FadeComponent],
     });
     expect(document.querySelector('.anim8-fade')).toBeInTheDocument();
   });
 
-  it('removes element from DOM when show becomes false', async () => {
+  it('removes element from DOM when @if condition becomes false', async () => {
     const { fixture } = await render(
-      `<anim8-fade [show]="isVisible"><span>hello</span></anim8-fade>`,
+      `@if (isVisible) { <anim8-fade><span>hello</span></anim8-fade> }`,
       { imports: [FadeComponent], componentProperties: { isVisible: true } },
     );
     fixture.componentInstance.isVisible = false;
@@ -34,7 +34,7 @@ describe('FadeComponent (+ AnimationBase shared behaviour)', () => {
   // --- CSS custom properties (set on host element, cascade to inner div) ---
 
   it('sets --anim8-duration from a preset', async () => {
-    await render(`<anim8-fade [show]="true" duration="fast"><span>hi</span></anim8-fade>`, {
+    await render(`<anim8-fade duration="fast"><span>hi</span></anim8-fade>`, {
       imports: [FadeComponent],
     });
     const host = document.querySelector('anim8-fade') as HTMLElement;
@@ -42,7 +42,7 @@ describe('FadeComponent (+ AnimationBase shared behaviour)', () => {
   });
 
   it('sets --anim8-duration from a numeric value', async () => {
-    await render(`<anim8-fade [show]="true" [duration]="250"><span>hi</span></anim8-fade>`, {
+    await render(`<anim8-fade [duration]="250"><span>hi</span></anim8-fade>`, {
       imports: [FadeComponent],
     });
     const host = document.querySelector('anim8-fade') as HTMLElement;
@@ -51,7 +51,7 @@ describe('FadeComponent (+ AnimationBase shared behaviour)', () => {
 
   it('sets --anim8-easing and --anim8-delay', async () => {
     await render(
-      `<anim8-fade [show]="true" easing="linear" [delay]="100"><span>hi</span></anim8-fade>`,
+      `<anim8-fade easing="linear" [delay]="100"><span>hi</span></anim8-fade>`,
       { imports: [FadeComponent] },
     );
     const host = document.querySelector('anim8-fade') as HTMLElement;
@@ -61,16 +61,16 @@ describe('FadeComponent (+ AnimationBase shared behaviour)', () => {
 
   // --- SSR ---
 
-  it('renders content on the server when show is true', async () => {
-    await render(`<anim8-fade [show]="true"><span>hi</span></anim8-fade>`, {
+  it('renders content on the server', async () => {
+    await render(`<anim8-fade><span>hi</span></anim8-fade>`, {
       imports: [FadeComponent],
       providers: [{ provide: PLATFORM_ID, useValue: 'server' }],
     });
     expect(document.querySelector('.anim8-fade')).toBeInTheDocument();
   });
 
-  it('does not render content on the server when show is false', async () => {
-    await render(`<anim8-fade [show]="false"><span>hi</span></anim8-fade>`, {
+  it('does not render content on the server when excluded by @if', async () => {
+    await render(`@if (false) { <anim8-fade><span>hi</span></anim8-fade> }`, {
       imports: [FadeComponent],
       providers: [{ provide: PLATFORM_ID, useValue: 'server' }],
     });
