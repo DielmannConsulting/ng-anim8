@@ -17,7 +17,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sdielmann/ng-anim8"
+    "url": "git+https://github.com/sdielmann/ng-anim8.git"
   },
   "bugs": "https://github.com/sdielmann/ng-anim8/issues",
   "homepage": "https://sdielmann.github.io/ng-anim8",
