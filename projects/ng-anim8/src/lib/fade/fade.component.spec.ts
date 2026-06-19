@@ -79,6 +79,30 @@ describe('FadeComponent (+ AnimationBase shared behaviour)', () => {
       .toBe('cubic-bezier(0.1, 0.2, 0.3, 0.4)');
   });
 
+  // --- blur ---
+
+  it('does not apply anim8-fade--blur class when blur is not set', async () => {
+    await render(`<anim8-fade></anim8-fade>`, { imports: [FadeComponent] });
+    expect(document.querySelector('.anim8-fade--blur')).not.toBeInTheDocument();
+  });
+
+  it('applies anim8-fade--blur class when blur is set', async () => {
+    await render(`<anim8-fade blur="4px"></anim8-fade>`, { imports: [FadeComponent] });
+    expect(document.querySelector('.anim8-fade--blur')).toBeInTheDocument();
+  });
+
+  it('sets --anim8-blur to the provided value', async () => {
+    await render(`<anim8-fade blur="4px"></anim8-fade>`, { imports: [FadeComponent] });
+    const host = document.querySelector('anim8-fade') as HTMLElement;
+    expect(host.style.getPropertyValue('--anim8-blur')).toBe('4px');
+  });
+
+  it('does not set --anim8-blur when blur is not set', async () => {
+    await render(`<anim8-fade></anim8-fade>`, { imports: [FadeComponent] });
+    const host = document.querySelector('anim8-fade') as HTMLElement;
+    expect(host.style.getPropertyValue('--anim8-blur')).toBe('');
+  });
+
   // --- SSR ---
 
   it('renders content on the server', async () => {

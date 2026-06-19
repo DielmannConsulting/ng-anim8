@@ -3,6 +3,11 @@
   to   { opacity: 1; }
 }
 
+@keyframes anim8-fade-blur-in {
+  from { opacity: 0; filter: blur(var(--anim8-blur)); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
 :host {
   display: block;
 
@@ -12,5 +17,13 @@
 
   &.anim8-fade--leave {
     animation: anim8-fade-in var(--anim8-duration, 300ms) var(--anim8-easing, ease-in-out) var(--anim8-delay, 0ms) reverse both;
+  }
+
+  &.anim8-fade--blur.anim8-fade--enter {
+    animation: anim8-fade-blur-in var(--anim8-duration, 300ms) var(--anim8-easing, ease-in-out) var(--anim8-delay, 0ms) both;
+  }
+
+  &.anim8-fade--blur.anim8-fade--leave {
+    animation: anim8-fade-blur-in var(--anim8-duration, 300ms) var(--anim8-easing, ease-in-out) var(--anim8-delay, 0ms) reverse both;
   }
 }
