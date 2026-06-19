@@ -6,6 +6,8 @@ export { ZoomComponent }     from './lib/zoom/zoom.component';
 export { NgAnim8Module }     from './ng-anim8.module';
 
 export { EASINGS }              from './lib/core/easing';
+export { provideAnim8, ANIM8_CONFIG } from './lib/core/config';
 export type { Duration }        from './lib/core/duration';
 export type { EasingName }      from './lib/core/easing';
 export type { SlideDirection }  from './lib/slide/slide.component';
+export type { Anim8Config }     from './lib/core/config';
