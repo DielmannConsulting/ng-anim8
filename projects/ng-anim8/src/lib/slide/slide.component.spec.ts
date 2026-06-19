@@ -30,4 +30,20 @@ describe('SlideComponent', () => {
     });
     expect(document.querySelector('.anim8-slide')).toHaveClass('anim8-slide--down');
   });
+
+  it('sets --anim8-slide-distance to 20px by default', async () => {
+    await render(`<anim8-slide><span>content</span></anim8-slide>`, {
+      imports: [SlideComponent],
+    });
+    const el = document.querySelector('.anim8-slide') as HTMLElement;
+    expect(el.style.getPropertyValue('--anim8-slide-distance')).toBe('20px');
+  });
+
+  it('sets --anim8-slide-distance to the provided distance value', async () => {
+    await render(`<anim8-slide [distance]="50"><span>content</span></anim8-slide>`, {
+      imports: [SlideComponent],
+    });
+    const el = document.querySelector('.anim8-slide') as HTMLElement;
+    expect(el.style.getPropertyValue('--anim8-slide-distance')).toBe('50px');
+  });
 });

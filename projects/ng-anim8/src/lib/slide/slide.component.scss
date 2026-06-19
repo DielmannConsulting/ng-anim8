@@ -1,7 +1,7 @@
-@keyframes anim8-slide-up-in    { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translate(0, 0); } }
-@keyframes anim8-slide-down-in  { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translate(0, 0); } }
-@keyframes anim8-slide-left-in  { from { opacity: 0; transform: translateX(20px);  } to { opacity: 1; transform: translate(0, 0); } }
-@keyframes anim8-slide-right-in { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes anim8-slide-up-in    { from { opacity: 0; transform: translateY(var(--anim8-slide-distance, 20px));  } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes anim8-slide-down-in  { from { opacity: 0; transform: translateY(calc(-1 * var(--anim8-slide-distance, 20px))); } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes anim8-slide-left-in  { from { opacity: 0; transform: translateX(var(--anim8-slide-distance, 20px));  } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes anim8-slide-right-in { from { opacity: 0; transform: translateX(calc(-1 * var(--anim8-slide-distance, 20px))); } to { opacity: 1; transform: translate(0, 0); } }
 
 
 

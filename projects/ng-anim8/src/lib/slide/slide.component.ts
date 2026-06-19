@@ -1,4 +1,4 @@
-import {Component, computed, input} from '@angular/core';
+import {Component, computed, input, numberAttribute} from '@angular/core';
 import {AnimationBase} from '../core/animation-base.directive';
 
 export type SlideDirection = 'up' | 'down' | 'left' | 'right';
@@ -10,11 +10,15 @@ export type SlideDirection = 'up' | 'down' | 'left' | 'right';
   styleUrl: './slide.component.scss',
   host: {
     '[class]': 'elementClass()',
+    '[style.--anim8-slide-distance]': 'resolvedDistance()',
     'animate.enter': 'anim8-slide--enter',
     'animate.leave': 'anim8-slide--leave'
   }
 })
 export class SlideComponent extends AnimationBase {
   direction = input<SlideDirection>('up');
-  protected elementClass = computed(() => `anim8-slide anim8-slide--${this.direction()}`);
+  distance  = input(20, { transform: numberAttribute });
+
+  protected elementClass     = computed(() => `anim8-slide anim8-slide--${this.direction()}`);
+  protected resolvedDistance = computed(() => `${this.distance()}px`);
 }
